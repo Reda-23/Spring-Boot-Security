@@ -6,6 +6,7 @@ import org.securityapp.services.AccountService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 import java.util.ArrayList;
 
@@ -16,6 +17,7 @@ public class SecurityAppApplication {
         SpringApplication.run(SecurityAppApplication.class, args);
     }
 
+    @Bean
     CommandLineRunner start(AccountService accountService){
         return args -> {
             accountService.addNewRole(new AppRole(null,"USER"));
