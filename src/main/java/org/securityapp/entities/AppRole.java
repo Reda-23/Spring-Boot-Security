@@ -15,5 +15,5 @@ import javax.persistence.Id;
 public class AppRole {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String roleName;
+    private String rolename;
 }
