@@ -18,8 +18,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
+//Authentification Stateful
 @Configuration
 @EnableWebSecurity
 public class AppSecurity extends WebSecurityConfigurerAdapter {
