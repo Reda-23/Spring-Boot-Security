@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -23,7 +24,7 @@ import java.util.Collection;
 @Configuration
 @EnableWebSecurity
 public class AppSecurity extends WebSecurityConfigurerAdapter {
-    private AccountService accountService;
+    private final AccountService accountService;
 
     public AppSecurity(AccountService accountService) {
         this.accountService = accountService;
@@ -31,9 +32,11 @@ public class AppSecurity extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-    // http.csrf().disable();
+    http.csrf().disable();
     http.headers().frameOptions().disable();
-    http.formLogin();
+    //http.formLogin();
+    http.authorizeRequests().antMatchers("/h2-console/**").permitAll();
+    http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     http.authorizeRequests().anyRequest().authenticated();
 
     }
